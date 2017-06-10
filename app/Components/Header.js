@@ -11,7 +11,6 @@ var Header = React.createClass({
 				<div className="jumbotron">
 					<h1 className="text-center"><strong><i className="fa fa-newspaper-o"></i>  NYT (an exercise in React)</strong></h1>
 				</div>
-			
 			</div>
 			
 			
