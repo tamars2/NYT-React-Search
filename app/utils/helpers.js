@@ -3,27 +3,28 @@ var axios = require("axios");
 
 // Helper functions for making API Calls
 var helper = {
-
+//
   runQuery: function(term, start, end) {
 
-    var authKey = "65ab10b788244f768e8afed6151f20fc";
+    var apiKey = "65ab10b788244f768e8afed6151f20fc";
     // These variables will hold the results we get from the user's inputs via HTML
     var searchTerm = term.trim();
     var startYear = start.trim();
     var endYear = end.trim();
-    // queryURLBase is the start of our API endpoint. The searchTerm will be appended to this when
-    // the user hits the search button
-    
+    console.log(" QUERY RUN " + searchTerm + "|| " + startYear + " || " + endYear);
+    var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + searchTerm + "&?begin_date=" + startYear + "&?end_date" + endYear + "+&api-key=" + apiKey;
+
     // Figure out the geolocation
-    return axios.get("https://api.nytimes.com/svc/search/v2/articlesearch.json", {
-      params: {
-          'api-key': "65ab10b788244f768e8afed6151f20fc",
-          'q': searchTerm,
-          'begin_date': startYear,
-          'end_date': endYear
-      }
+    return axios.get(queryURL, {
+      // params: {
+      //     'api-key': "65ab10b788244f768e8afed6151f20fc",
+      //     'q': searchTerm,
+      //     'begin_date': startYear,
+      //     'end_date': endYear
+      // }
 
     }).then(function(response) {
+      console.log(" RESPONSE " + JSON.stringify(response.data.response.docs[0]));
       return response.data.response;
     });
   },

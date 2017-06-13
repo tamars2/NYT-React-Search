@@ -10,12 +10,38 @@ var Header = require('./Header');
 
 var Main = React.createClass({
 
+	// getInitialState: function() {
+	// 	return { topic: "", start: "", end: "", articles: []};
+	// },
+
+	// setArticles: function(newArticles) {
+	// 	this.setState({articles: newArticles})
+	// },
+
+	// search: function(topic, start, end) {
+	// 	if (topic === '' || start === '' || end === '') {
+	// 		this.setState({ articles: []});
+	// 	} else {
+	// 		axios.get('/articles/' + topic + '/' + start + '/' + end)
+	// 			.then(function(response) {
+	// 				this.setState({articles: response.data})
+	// 			}.bind(this))
+	// 				.catch(function(error) {
+	// 					console.log(error);
+	// 					this.setState({articles: []});
+	// 				});
+	// 	}
+	// },
+
 	render: function() {
 		return(
 			<div className="container">
-				<Header />
+				<div className="container">
+					<div className="jumbotron">
+						<h1 className="text-center"><strong><i className="fa fa-newspaper-o"></i>  NYT (an exercise in React)</strong></h1>
+					</div>
+				</div>
 				<Search />
-				<Query />
 				<Saved />
 			</div>
 			
