@@ -6,10 +6,6 @@ var helpers = require('../utils/helpers');
 var Main = require('./Main');
 
 var Search = React.createClass({
-  // constructor(props) {
-  //   super(props);
-  //   this.handleSubmit = this.handleSubmit.bind(this);
-  // },
   getInitialState: function() {
     return {
       searchQuery: "",
