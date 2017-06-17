@@ -3,40 +3,45 @@ var Router = require('react-router');
 var test = "test";
 var helpers = require('../utils/helpers');
 
+var Main = require('./Main');
+
 var Search = React.createClass({
+  // constructor(props) {
+  //   super(props);
+  //   this.handleSubmit = this.handleSubmit.bind(this);
+  // },
   getInitialState: function() {
     return {
       searchQuery: "",
-      term: "",
-      begin: "",
+      topic: "",
+      start: "",
       end: "",
       results: []
     };
   },
-  componentDidUpdate: function(prevProps, prevState) {
-        if(prevState.searchQuery !== this.state.searchQuery) {
-          helpers.runQuery(this.state.searchQuery)
-            .then(function(data) {
-              if(data != this.state.results) {
-                this.setState({results: data});
-              }
-            }.bind(this));
-        }
-
-  },
+  // componentDidUpdate: function(prevProps, prevState) {
+  //       if(prevState.searchQuery !== this.state.searchQuery) {
+  //         helpers.runQuery(this.state.searchQuery)
+  //           .then(function(data) {
+  //             if(data != this.state.results) {
+  //               this.setState({results: data});
+  //             }
+  //           }.bind(this));
+  //       }
+  // },
 
   postSaved: function(article) {
     helpers.postSavedArticle(article);
   },
 
-  handleTermChange: function(event) {
+  handletopicChange: function(event) {
 
-    this.setState({ term: event.target.value });
+    this.setState({ topic: event.target.value });
 
   },
-  handleBeginChange: function(event) {
+  handlestartChange: function(event) {
 
-    this.setState({ begin: event.target.value });
+    this.setState({ start: event.target.value });
 
   },
   handleEndChange: function(event) {
@@ -44,18 +49,27 @@ var Search = React.createClass({
     this.setState({ end: event.target.value });
 
   },
-  
+
   handleSubmit: function(event) {
     event.preventDefault();
-    console.log("TEST " + this.state.term);
-    console.log("TEST " + this.state.begin);
-    console.log("TEST " + this.state.end);
-    helpers.runQuery(this.state.term, this.state.begin, this.state.end)
-      .then(function(data) {
-        console.log(" HANDLE SUBMIT " + data);
+    console.log("TOPIC " + this.state.topic);
+    console.log("START " + this.state.start);
+    console.log("TEND " + this.state.end);
+    this.props.setParent(this.state.topic, this.state.start, this.state.end);
 
-      });
-    this.setState({});
+    // Helpers.runQuery works, but may not be the best weay
+    // helpers.runQuery(this.state.topic, this.state.start, this.state.end)
+    //   .then(function(data) {
+    //     console.log(" HANDLE SUBMIT " + JSON.stringify(data.docs[0].web_url));
+    //     console.log(" Data LEN " + data.length);
+
+    //   });
+    // this.setState({ 
+    //   searchQuery: "",
+    //   topic: "",
+    //   start: "",
+    //   end: "", 
+    // });
   },
 
   render: function() {
@@ -68,14 +82,14 @@ var Search = React.createClass({
             <h3 className="panel-title"><strong><i className="fa fa-list-alt"></i> Search</strong></h3>
           </div>
           <div className="panel-body">
-            <form role="form">      
+            <form role="form">
               <div className="form-group">
-                <label htmlFor="search">Search Term:</label>
-                <input value={this.state.term} type="text" className="form-control" id="term" onChange={this.handleTermChange} />
+                <label htmlFor="search">Search topic:</label>
+                <input value={this.state.topic} type="text" className="form-control" id="topic" onChange={this.handletopicChange} />
               </div>
               <div className="form-group">
                 <label htmlFor="start-year">Start Year (Optional):</label>
-                <input value={this.state.begin} type="text" className="form-control" id="begin" onChange={this.handleBeginChange} />
+                <input value={this.state.start} type="text" className="form-control" id="start" onChange={this.handlestartChange} />
               </div>
               <div className="form-group">
                 <label htmlFor="end-year">End Year (Optional):</label>
@@ -84,16 +98,6 @@ var Search = React.createClass({
               <button href="#" type="submit" className="btn btn-default" id="run-search" onClick={this.handleSubmit}><i className="fa fa-search"></i>  Search</button>
               <button type="button" className="btn btn-default" id="clear-all"><i className="fa fa-trash"></i>  Clear Results</button>
             </form>
-          </div>
-        </div>
-        </div>
-        <div className="col-sm-12">
-        <br />
-        <div className="panel panel-primary">
-          <div className="panel-heading">
-            <h3 className="panel-title"><strong><i className="fa fa-table"></i>   Search Results</strong></h3>
-          </div>
-          <div className="panel-body" id="well-section">
           </div>
         </div>
         </div>

@@ -4,28 +4,28 @@ var axios = require("axios");
 // Helper functions for making API Calls
 var helper = {
 //
-  runQuery: function(term, start, end) {
-
+  runQuery: function(topic, start, end) {
+    console.log(" START YR " + start);
     var apiKey = "65ab10b788244f768e8afed6151f20fc";
     // These variables will hold the results we get from the user's inputs via HTML
-    var searchTerm = term.trim();
+    var searchTopic = topic.trim();
     var startYear = start.trim();
     var endYear = end.trim();
-    console.log(" QUERY RUN " + searchTerm + "|| " + startYear + " || " + endYear);
-    var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + searchTerm + "&?begin_date=" + startYear + "&?end_date" + endYear + "+&api-key=" + apiKey;
+    // console.log(" QUERY RUN " + searchTopic + "|| " + startYear + " || " + endYear);
+    var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + searchTopic + "&?begin_date=" + startYear + "&?end_date" + endYear + "+&api-key=" + apiKey;
 
     // Figure out the geolocation
     return axios.get(queryURL, {
       // params: {
       //     'api-key': "65ab10b788244f768e8afed6151f20fc",
-      //     'q': searchTerm,
+      //     'q': searchTopic,
       //     'begin_date': startYear,
       //     'end_date': endYear
       // }
 
     }).then(function(response) {
-      console.log(" RESPONSE " + JSON.stringify(response.data.response.docs[0]));
-      return response.data.response;
+      // console.log(" RESPONSE " + JSON.stringify(response.data.response.docs[0]));
+      return response.data.response.docs;
     });
   },
 
