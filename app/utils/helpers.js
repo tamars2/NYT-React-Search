@@ -9,8 +9,8 @@ var helper = {
     var apiKey = "65ab10b788244f768e8afed6151f20fc";
     // These variables will hold the results we get from the user's inputs via HTML
     var searchTopic = topic.trim();
-    var startYear = start.trim();
-    var endYear = end.trim();
+    var startYear = start.trim() + "0101";
+    var endYear = end.trim() + "1231";
     // console.log(" QUERY RUN " + searchTopic + "|| " + startYear + " || " + endYear);
     var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + searchTopic + "&?begin_date=" + startYear + "&?end_date" + endYear + "+&api-key=" + apiKey;
 
