@@ -1,5 +1,4 @@
 var React = require("react");
-var Router = require('react-router');
 var test = "test";
 var helpers = require('../utils/helpers');
 
@@ -13,22 +12,18 @@ var Saved = React.createClass({
   delete: function(result, event){
     event.preventDefault();
     helpers.deleteSaved(result.title, result.date, result.url).then(function() {
-      // Get the revised list!
       helpers.getSaved().then(function(articleData) {
         this.setState({ savedArticles: articleData.data });
         console.log("saved results", articleData.data);
       }.bind(this));
     }.bind(this));
-    // this.props.deleteArticle(result._id).then(function(err, res) {
-    //   this.setState({savedArticles: myResults});
-    // }.bind(this));
   },
 
+//need to review this, it's not updating in real time
   componentWillReceiveProps: function(nextProps) {
     var myResults = nextProps.savedArticles.map(function(search, i){
-      // var boundClick = that.save.bind(that, search);
       return (
-       <div className="list-group-item" key={i}><a href={search.url} target="_blank">{search.title}</a><br />{search.date}<br /><button type="button" className="btn btn-success" style={{'float': 'right', 'marginTop': '-39px'}} onClick={this.delete.bind(this, search)}>Delete</button></div>
+       <div className="list-group-item" key={i}><a href={search.url} target="_blank">{search.title}</a><br />{search.date.toString()}<br /><button type="button" className="btn btn-success" style={{'float': 'right', 'marginTop': '-39px'}} onClick={this.delete.bind(this, search)}>Delete</button></div>
       )
     }.bind(this));
 

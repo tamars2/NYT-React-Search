@@ -1,13 +1,10 @@
 var React = require("react");
-// var Router = require('react-router');
-var test = "test";
 var helpers = require('../utils/helpers');
 var axios = require('axios');
 
 var Search = require('./Search');
 var Query = require('./Query');
 var Saved = require('./Saved');
-var Header = require('./Header');
 
 var Main = React.createClass({
 
@@ -55,15 +52,6 @@ var Main = React.createClass({
 			}.bind(this));
 	},
 
-	// getArticle: function() {
-	// 	axios.get('/api/saved')
-	// 		.then(function(response){
-	// 			this.setState({
-	// 				savedArticles: response.data
-	// 			});
-	// 		}.bind(this));
-	// },
-
 	componentDidUpdate: function(prevProps, prevState) {
 		//holy crap, this took me forever to fix.  I was receiving http 429 due to
 		//repeated queries going over the max limit for the NYT api
@@ -85,17 +73,6 @@ var Main = React.createClass({
 				});
 			}.bind(this));
 	},
-
-	// componentDidMount: function() {
-	// 	//display saved articles
-	// 	axios.get('/api/saved')
-	// 		.then(function(response){
-	// 			this.setState({
-	// 				savedArticles: response.data
-	// 			});
-	// 		}.bind(this));
-
-	// },
 	
 	render: function() {
 		return(

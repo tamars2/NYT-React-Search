@@ -1,5 +1,4 @@
 var React = require("react");
-// var Router = require('react-router');
 var test = "test";
 var helpers = require('../utils/helpers');
 
@@ -15,16 +14,6 @@ var Search = React.createClass({
       results: []
     };
   },
-  // componentDidUpdate: function(prevProps, prevState) {
-  //       if(prevState.searchQuery !== this.state.searchQuery) {
-  //         helpers.runQuery(this.state.searchQuery)
-  //           .then(function(data) {
-  //             if(data != this.state.results) {
-  //               this.setState({results: data});
-  //             }
-  //           }.bind(this));
-  //       }
-  // },
 
   postSaved: function(article) {
     helpers.postSavedArticle(article);
@@ -53,19 +42,7 @@ var Search = React.createClass({
     console.log("TEND " + this.state.end);
     this.props.setParent(this.state.topic, this.state.start, this.state.end);
 
-    // Helpers.runQuery works, but may not be the best weay
-    // helpers.runQuery(this.state.topic, this.state.start, this.state.end)
-    //   .then(function(data) {
-    //     console.log(" HANDLE SUBMIT " + JSON.stringify(data.docs[0].web_url));
-    //     console.log(" Data LEN " + data.length);
-
-    //   });
-    // this.setState({ 
-    //   searchQuery: "",
-    //   topic: "",
-    //   start: "",
-    //   end: "", 
-    // });
+    
   },
 
   render: function() {

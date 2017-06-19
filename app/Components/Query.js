@@ -1,6 +1,4 @@
 var React = require("react");
-// var Router = require('react-router');
-var test = "test";
 var helpers = require('../utils/helpers');
 
 var Query = React.createClass({
@@ -35,7 +33,6 @@ var Query = React.createClass({
   },
 
   render: function() {
-    var that = this;
     return (
       <div className="row">
         <div className="col-sm-12">
