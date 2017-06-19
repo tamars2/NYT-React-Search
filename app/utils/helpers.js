@@ -11,10 +11,11 @@ var helper = {
     var searchTopic = topic.trim();
     var startYear = start.trim() + "0101";
     var endYear = end.trim() + "1231";
-    var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + searchTopic + "&?begin_date=" + startYear + "&?end_date" + endYear + "+&api-key=" + apiKey;
+
+    var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=" + apiKey + "&q=" + searchTopic + "&begin_date=" + startYear + "&end_date=" + endYear;
+          console.log(" QEUR URL " + queryURL)
 
     return axios.get(queryURL, {
-
     }).then(function(response) {
       // console.log(" RESPONSE " + JSON.stringify(response.data.response.docs[0]));
       return response.data.response.docs;
@@ -24,6 +25,7 @@ var helper = {
   getSaved: function() {
     return axios.get("/api/saved")
       .then(function(results) {
+        console.log("axios results", results);
         return results;
       });
   },
@@ -31,24 +33,33 @@ var helper = {
   // This function posts new searches to our database.
   postSaved: function(title, date, url) {
     var newArticle = {title: title, date: date, url: url};
-    return axios.post("/api/saved", newArticle)
+    return axios.post('/api/saved', newArticle)
       .then(function(results) {
+        console.log("MongoDB saved");
         return results._id;
       });
+
+    // var newArticle = {title: title, date: date, url: url};
+    // return axios.post("/api/saved", newArticle)
+    //   .then(function(results) {
+    //     return results._id;
+    //   });
   },
 
-  deleteSaved: function(title, date, url) {
-    return axios.delete('/api/saved', {
+  deleteSaved: function(title, datd, url) {
+    return axios.delete("/api/saved", {
       params: {
-        'title': title,
-        'data': data,
-        'url': url
+        "title": title,
+        "datd": datd,
+        "url": url
       }
     })
-      .then(function(results) {
-        return results;
-      });
+    .then(function(results) {
+      console.log("axios results", results);
+      return results;
+    });
   }
+
 };
 
 // We export the API helper

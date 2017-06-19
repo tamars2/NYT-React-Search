@@ -1,5 +1,5 @@
 var React = require("react");
-var Router = require('react-router');
+// var Router = require('react-router');
 var test = "test";
 var helpers = require('../utils/helpers');
 var axios = require('axios');
@@ -24,8 +24,8 @@ var Main = React.createClass({
 	setParent: function(topic, start, end) {
 		this.setState({
 			topic: topic,
-			startYear: start,
-			endYear: end
+			start: start,
+			end: end
 		});
 	},
 
@@ -34,8 +34,9 @@ var Main = React.createClass({
 		this.getArticle();
 	},
 
-	deleteArticle: function(article) {
-		axios.delete('/api/saved/' + article._id)
+	deleteArticle: function(id){
+		console.log("DEL ART METHOD " + id);
+		axios.delete('/api/saved/' + id)
 			.then(function(response){
 				this.setState({
 					savedArticles: response.data
@@ -44,6 +45,14 @@ var Main = React.createClass({
 			}.bind(this));
 
 		this.getArticle();
+	},
+
+	getArticle: function(){
+		axios.get('/api/saved')
+			.then(function(response) {
+				this.setState({ savedArticles: response.data});
+
+			}.bind(this));
 	},
 
 	// getArticle: function() {
@@ -68,6 +77,15 @@ var Main = React.createClass({
       }
 	},
 
+	componentDidMount: function(){
+		axios.get('/api/saved')
+			.then(function(response){
+				this.setState({
+					savedArticles: response.data
+				});
+			}.bind(this));
+	},
+
 	// componentDidMount: function() {
 	// 	//display saved articles
 	// 	axios.get('/api/saved')
@@ -89,7 +107,7 @@ var Main = React.createClass({
 				</div>
 				<Search setParent={this.setParent} />
 				<Query results={this.state.results} savedArticle={this.savedArticle}/>
-				<Saved savedArticles={this.state.savedArticles} deleteArticle={this.state.deleteArticle} />
+				<Saved savedArticles={this.state.savedArticles} deleteArticle={this.deleteArticle} />
 			</div>
 			
 			

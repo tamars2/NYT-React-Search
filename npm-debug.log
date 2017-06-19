@@ -9,7 +9,7 @@
 6 silly lifecycle nyt-react-search@1.0.0~prestart: no script for prestart, continuing
 7 info lifecycle nyt-react-search@1.0.0~start: nyt-react-search@1.0.0
 8 verbose lifecycle nyt-react-search@1.0.0~start: unsafe-perm in lifecycle true
-9 verbose lifecycle nyt-react-search@1.0.0~start: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/Trent/Desktop/gtbootcamp/homework/NYT-React-Search/node_modules/.bin:/Users/Trent/.rbenv/shims:/Users/Trent/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+9 verbose lifecycle nyt-react-search@1.0.0~start: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/Trent/Desktop/gtbootcamp/homework/NYT-React-Search/node_modules/.bin:/Users/Trent/.rbenv/shims:/Users/Trent/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/share/dotnet:/Library/Frameworks/Mono.framework/Versions/Current/Commands
 10 verbose lifecycle nyt-react-search@1.0.0~start: CWD: /Users/Trent/Desktop/gtbootcamp/homework/NYT-React-Search
 11 silly lifecycle nyt-react-search@1.0.0~start: Args: [ '-c', 'node server.js' ]
 12 silly lifecycle nyt-react-search@1.0.0~start: Returned: code: 1  signal: null

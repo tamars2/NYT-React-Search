@@ -1,5 +1,5 @@
 var React = require("react");
-var Router = require('react-router');
+// var Router = require('react-router');
 var test = "test";
 var helpers = require('../utils/helpers');
 
